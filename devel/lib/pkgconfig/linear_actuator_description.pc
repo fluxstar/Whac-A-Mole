@@ -1,0 +1,1 @@
+/home/krant115/whac-a-mole/devel/.private/linear_actuator_description/lib/pkgconfig/linear_actuator_description.pc

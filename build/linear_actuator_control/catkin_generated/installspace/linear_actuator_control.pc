@@ -1,0 +1,8 @@
+prefix=/home/krant115/whac-a-mole/install
+
+Name: linear_actuator_control
+Description: Description of linear_actuator_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

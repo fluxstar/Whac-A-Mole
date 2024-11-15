@@ -1,0 +1,1 @@
+/home/krant115/whac-a-mole/devel/.private/linear_actuator_control/share/linear_actuator_control/cmake/linear_actuator_controlConfig-version.cmake

@@ -1,2 +1,0 @@
-
--DCATKIN_DEVEL_PREFIX=/home/krant115/whac-a-mole/devel -DCMAKE_INSTALL_PREFIX=/home/krant115/whac-a-mole/install -G Unix Makefiles

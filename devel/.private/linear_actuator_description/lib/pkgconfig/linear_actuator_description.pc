@@ -1,0 +1,8 @@
+prefix=/home/krant115/whac-a-mole/devel/.private/linear_actuator_description
+
+Name: linear_actuator_description
+Description: Description of linear_actuator_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
