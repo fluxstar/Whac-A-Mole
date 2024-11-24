@@ -1,1 +1,8 @@
-/home/krant115/whac-a-mole/devel/.private/linear_actuator_control/lib/pkgconfig/linear_actuator_control.pc
+prefix=/home/krant115/whac-a-mole/devel
+
+Name: linear_actuator_control
+Description: Description of linear_actuator_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

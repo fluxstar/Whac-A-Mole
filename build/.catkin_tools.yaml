@@ -1,6 +1,0 @@
-devel_space: /home/krant115/whac-a-mole/devel
-install: false
-install_space: /home/krant115/whac-a-mole/install
-profile: default
-source_space: /home/krant115/whac-a-mole/src
-workspace: /home/krant115/whac-a-mole

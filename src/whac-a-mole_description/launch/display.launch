@@ -1,0 +1,17 @@
+<launch>
+  <!-- Load the URDF into the parameter server -->
+  <param name="robot_description" 
+  command="$(find xacro)/xacro '$(find whac-a-mole_description)/urdf/whac-a-mole.urdf'" />
+
+  <!-- Start Gazebo with the empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Spawn the robot in Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-param robot_description -urdf -model whac-a-mole"/>
+</launch>

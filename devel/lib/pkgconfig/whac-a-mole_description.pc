@@ -1,0 +1,8 @@
+prefix=/home/krant115/whac-a-mole/devel
+
+Name: whac-a-mole_description
+Description: Description of whac-a-mole_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

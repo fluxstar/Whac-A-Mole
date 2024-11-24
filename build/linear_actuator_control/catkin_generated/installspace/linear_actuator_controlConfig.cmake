@@ -68,7 +68,7 @@ set(linear_actuator_control_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(linear_actuator_control_SOURCE_PREFIX /home/krant115/whac-a-mole/src/linear_actuator_control)
-  set(linear_actuator_control_DEVEL_PREFIX /home/krant115/whac-a-mole/devel/.private/linear_actuator_control)
+  set(linear_actuator_control_DEVEL_PREFIX /home/krant115/whac-a-mole/devel)
   set(linear_actuator_control_INSTALL_PREFIX "")
   set(linear_actuator_control_PREFIX ${linear_actuator_control_DEVEL_PREFIX})
 else()
