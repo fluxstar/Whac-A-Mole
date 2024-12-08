@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <robot name="whac-a-mole">
+
+    <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/</robotNamespace>
+    </plugin>
+    </gazebo>
+
     <link name="world" />
 
     <joint name="world_joint"  type="fixed">
@@ -17,11 +24,11 @@
                 <color rgba="0.5 0.5 0.5 1"/>
             </material>
         </visual>
-        <collision>
+        <!-- <collision>
             <geometry>
                 <mesh filename="package://whac-a-mole_description/meshes/Base.stl"/>
             </geometry>
-        </collision>
+        </collision> -->
         <inertial>
             <mass value="1.0"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -40,11 +47,11 @@
                 <color rgba="0.5 0.5 0.5 1"/>
             </material>
         </visual>
-        <collision>
+        <!-- <collision>
             <geometry>
                 <box size="1 1 0.5"/>
             </geometry>
-        </collision>
+        </collision> -->
         <inertial>
             <mass value="1.0"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -62,11 +69,11 @@
                 <color rgba="0.0 0.0 0.8 1"/>
             </material>
         </visual>
-        <collision>
+        <!-- <collision>
             <geometry>
                 <cylinder radius="0.2" length="1.00"/>
             </geometry>
-        </collision>
+        </collision> -->
         <inertial>
             <mass value="0.5"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -76,15 +83,15 @@
     </link>
 
     <joint name="base_to_linear_actuator_1" type="fixed">
-        <parent link="base"/>
+        <parent link="world"/>
         <child link="linear_actuator_1"/>
-        <origin xyz="-1 -8 3" rpy="0 0 0"/>
+        <origin xyz="4 -4 3" rpy="0 0 0"/>
     </joint>
 
     <joint name="slider_joint_1" type="prismatic">
         <parent link="linear_actuator_1"/>
         <child link="slider_link_1"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
@@ -100,11 +107,11 @@
                 <color rgba="0.5 0.5 0.5 1"/>
             </material>
         </visual>
-        <collision>
+        <!-- <collision>
             <geometry>
                 <box size="1 1 0.5"/>
             </geometry>
-        </collision>
+        </collision> -->
         <inertial>
             <mass value="1.0"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -122,11 +129,11 @@
                 <color rgba="0.0 0.0 0.8 1"/>
             </material>
         </visual>
-        <collision>
+        <!-- <collision>
             <geometry>
                 <cylinder radius="0.2" length="1.00"/>
             </geometry>
-        </collision>
+        </collision> -->
         <inertial>
             <mass value="0.5"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -136,15 +143,15 @@
     </link>
 
     <joint name="base_to_linear_actuator_2" type="fixed">
-        <parent link="base"/>
+        <parent link="world"/>
         <child link="linear_actuator_2"/>
-        <origin xyz="-3 -8 3" rpy="0 0 0"/>
+        <origin xyz="2 -4 3" rpy="0 0 0"/>
     </joint>
 
     <joint name="slider_joint_2" type="prismatic">
         <parent link="linear_actuator_2"/>
         <child link="slider_link_2"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
@@ -160,11 +167,11 @@
                 <color rgba="0.5 0.5 0.5 1"/>
             </material>
         </visual>
-        <collision>
+        <!-- <collision>
             <geometry>
                 <box size="1 1 0.5"/>
             </geometry>
-        </collision>
+        </collision> -->
         <inertial>
             <mass value="1.0"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -182,11 +189,11 @@
                 <color rgba="0.0 0.0 0.8 1"/>
             </material>
         </visual>
-        <collision>
+        <!-- <collision>
             <geometry>
                 <cylinder radius="0.2" length="1.00"/>
             </geometry>
-        </collision>
+        </collision> -->
         <inertial>
             <mass value="0.5"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -196,15 +203,15 @@
     </link>
 
     <joint name="base_to_linear_actuator_3" type="fixed">
-        <parent link="base"/>
+        <parent link="world"/>
         <child link="linear_actuator_3"/>
-        <origin xyz="-7 -8 3" rpy="0 0 0"/>
+        <origin xyz="-1 -4 3" rpy="0 0 0"/>
     </joint>
 
     <joint name="slider_joint_3" type="prismatic">
         <parent link="linear_actuator_3"/>
         <child link="slider_link_3"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
@@ -220,11 +227,11 @@
                 <color rgba="0.5 0.5 0.5 1"/>
             </material>
         </visual>
-        <collision>
+        <!-- <collision>
             <geometry>
                 <box size="1 1 0.5"/>
             </geometry>
-        </collision>
+        </collision> -->
         <inertial>
             <mass value="1.0"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -242,11 +249,11 @@
                 <color rgba="0.0 0.0 0.8 1"/>
             </material>
         </visual>
-        <collision>
+        <!-- <collision>
             <geometry>
                 <cylinder radius="0.2" length="1.00"/>
             </geometry>
-        </collision>
+        </collision> -->
         <inertial>
             <mass value="0.5"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -256,17 +263,61 @@
     </link>
 
     <joint name="base_to_linear_actuator_4" type="fixed">
-        <parent link="base"/>
+        <parent link="world"/>
         <child link="linear_actuator_4"/>
-        <origin xyz="-9 -8 3" rpy="0 0 0"/>
+        <origin xyz="-3 -4 3" rpy="0 0 0"/>
     </joint>
 
     <joint name="slider_joint_4" type="prismatic">
         <parent link="linear_actuator_4"/>
         <child link="slider_link_4"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
     </joint>
+
+        <!-- Transmission for slider_joint_1 -->
+    <transmission name="slider_joint_1_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="slider_joint_1">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="slider_joint_1_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <!-- Transmission for slider_joint_2 -->
+    <transmission name="slider_joint_2_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="slider_joint_2">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="slider_joint_2_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <!-- Transmission for slider_joint_3 -->
+    <transmission name="slider_joint_3_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="slider_joint_3">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="slider_joint_3_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <!-- Transmission for slider_joint_4 -->
+    <transmission name="slider_joint_4_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="slider_joint_4">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="slider_joint_4_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 </robot>

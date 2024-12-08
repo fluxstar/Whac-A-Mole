@@ -1,7 +1,10 @@
 <launch>
   <!-- Load the URDF into the parameter server -->
   <param name="robot_description" 
-  command="$(find xacro)/xacro '$(find whac-a-mole_description)/urdf/whac-a-mole.urdf'" />
+         command="$(find xacro)/xacro '$(find whac-a-mole_description)/urdf/whac-a-mole.urdf'" />
+
+  <!-- Load the controller configurations -->
+  <rosparam file="$(find whac-a-mole_description)/config/controller_config.yaml" command="load"/>
 
   <!-- Start Gazebo with the empty world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -14,4 +17,12 @@
   <!-- Spawn the robot in Gazebo -->
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen"
         args="-param robot_description -urdf -model whac-a-mole"/>
+
+  <!-- Start the controller manager -->
+  <!-- <node name="controller_manager" pkg="controller_manager" type="controller_manager" output="screen"/> -->
+
+  <!-- Start the controller spawner -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen"
+        args="slider_joint_1_position_controller slider_joint_2_position_controller 
+              slider_joint_3_position_controller slider_joint_4_position_controller"/>
 </launch>
