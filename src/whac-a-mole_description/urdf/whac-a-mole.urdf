@@ -63,7 +63,7 @@
     <link name="slider_link_1">
         <visual>
             <geometry>
-                <cylinder radius="0.2" length="1.00"/>
+                <cylinder radius="0.2" length="3.00"/>
             </geometry>
             <material name="blue">
                 <color rgba="0.0 0.0 0.8 1"/>
@@ -71,7 +71,7 @@
         </visual>
         <!-- <collision>
             <geometry>
-                <cylinder radius="0.2" length="1.00"/>
+                <cylinder radius="0.2" length="3.00"/>
             </geometry>
         </collision> -->
         <inertial>
@@ -82,19 +82,19 @@
         </inertial>
     </link>
 
-    <joint name="base_to_linear_actuator_1" type="fixed">
-        <parent link="world"/>
-        <child link="linear_actuator_1"/>
-        <origin xyz="4 -4 3" rpy="0 0 0"/>
-    </joint>
-
     <joint name="slider_joint_1" type="prismatic">
-        <parent link="linear_actuator_1"/>
+        <parent link="world"/>
         <child link="slider_link_1"/>
-        <origin xyz="0 0 0.75" rpy="0 0 0"/>
+        <origin xyz="4 -4 4.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
+        <limit effort="100.0" lower="-2.25" upper="0.4" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
+    </joint>
+    
+    <joint name="base_to_slider_link_1" type="fixed">
+        <parent link="slider_link_1"/>
+        <child link="linear_actuator_1"/>
+        <origin xyz="0 0 -1.75" rpy="0 0 0"/>
     </joint>
 
     <!-- Linear Actuator 2 -->
@@ -123,7 +123,7 @@
     <link name="slider_link_2">
         <visual>
             <geometry>
-                <cylinder radius="0.2" length="1.00"/>
+                <cylinder radius="0.2" length="3.00"/>
             </geometry>
             <material name="blue">
                 <color rgba="0.0 0.0 0.8 1"/>
@@ -131,7 +131,7 @@
         </visual>
         <!-- <collision>
             <geometry>
-                <cylinder radius="0.2" length="1.00"/>
+                <cylinder radius="0.2" length="3.00"/>
             </geometry>
         </collision> -->
         <inertial>
@@ -142,19 +142,19 @@
         </inertial>
     </link>
 
-    <joint name="base_to_linear_actuator_2" type="fixed">
-        <parent link="world"/>
-        <child link="linear_actuator_2"/>
-        <origin xyz="2 -4 3" rpy="0 0 0"/>
-    </joint>
-
     <joint name="slider_joint_2" type="prismatic">
-        <parent link="linear_actuator_2"/>
+        <parent link="world"/>
         <child link="slider_link_2"/>
-        <origin xyz="0 0 0.75" rpy="0 0 0"/>
+        <origin xyz="2 -4 4.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
+        <limit effort="100.0" lower="-2.25" upper="0.4" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
+    </joint>
+    
+    <joint name="base_to_slider_link_2" type="fixed">
+        <parent link="slider_link_2"/>
+        <child link="linear_actuator_2"/>
+        <origin xyz="0 0 -1.75" rpy="0 0 0"/>
     </joint>
 
     <!-- Linear Actuator 3 -->
@@ -183,7 +183,7 @@
     <link name="slider_link_3">
         <visual>
             <geometry>
-                <cylinder radius="0.2" length="1.00"/>
+                <cylinder radius="0.2" length="3.00"/>
             </geometry>
             <material name="blue">
                 <color rgba="0.0 0.0 0.8 1"/>
@@ -191,7 +191,7 @@
         </visual>
         <!-- <collision>
             <geometry>
-                <cylinder radius="0.2" length="1.00"/>
+                <cylinder radius="0.2" length="3.00"/>
             </geometry>
         </collision> -->
         <inertial>
@@ -202,19 +202,19 @@
         </inertial>
     </link>
 
-    <joint name="base_to_linear_actuator_3" type="fixed">
-        <parent link="world"/>
-        <child link="linear_actuator_3"/>
-        <origin xyz="-1 -4 3" rpy="0 0 0"/>
-    </joint>
-
     <joint name="slider_joint_3" type="prismatic">
-        <parent link="linear_actuator_3"/>
+        <parent link="world"/>
         <child link="slider_link_3"/>
-        <origin xyz="0 0 0.75" rpy="0 0 0"/>
+        <origin xyz="-1 -4 4.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
+        <limit effort="100.0" lower="-2.25" upper="0.4" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
+    </joint>
+    
+    <joint name="base_to_slider_link_3" type="fixed">
+        <parent link="slider_link_3"/>
+        <child link="linear_actuator_3"/>
+        <origin xyz="0 0 -1.75" rpy="0 0 0"/>
     </joint>
 
     <!-- Linear Actuator 4 -->
@@ -243,7 +243,7 @@
     <link name="slider_link_4">
         <visual>
             <geometry>
-                <cylinder radius="0.2" length="1.00"/>
+                <cylinder radius="0.2" length="3.00"/>
             </geometry>
             <material name="blue">
                 <color rgba="0.0 0.0 0.8 1"/>
@@ -251,7 +251,7 @@
         </visual>
         <!-- <collision>
             <geometry>
-                <cylinder radius="0.2" length="1.00"/>
+                <cylinder radius="0.2" length="3.00"/>
             </geometry>
         </collision> -->
         <inertial>
@@ -262,19 +262,19 @@
         </inertial>
     </link>
 
-    <joint name="base_to_linear_actuator_4" type="fixed">
-        <parent link="world"/>
-        <child link="linear_actuator_4"/>
-        <origin xyz="-3 -4 3" rpy="0 0 0"/>
-    </joint>
-
     <joint name="slider_joint_4" type="prismatic">
-        <parent link="linear_actuator_4"/>
+        <parent link="world"/>
         <child link="slider_link_4"/>
-        <origin xyz="0 0 0.75" rpy="0 0 0"/>
+        <origin xyz="-3 -4 4.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
+        <limit effort="100.0" lower="-2.25" upper="0.4" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
+    </joint>
+    
+    <joint name="base_to_slider_link_4" type="fixed">
+        <parent link="slider_link_4"/>
+        <child link="linear_actuator_4"/>
+        <origin xyz="0 0 -1.75" rpy="0 0 0"/>
     </joint>
 
         <!-- Transmission for slider_joint_1 -->

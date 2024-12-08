@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
+import math
 from std_msgs.msg import Float64
 
 def move_actuators():
@@ -13,26 +14,23 @@ def move_actuators():
     pub4 = rospy.Publisher('/slider_joint_4_position_controller/command', Float64, queue_size=10)
     
     rate = rospy.Rate(10)  # 10 Hz
-    position = 0.0
-    direction = 1  # 1 for increasing, -1 for decreasing
-    rospy.sleep(1)  # Wait for the actuators to be ready
+    start_time = rospy.get_time()
     
     while not rospy.is_shutdown():
-        # Publish position to each actuator
-        pub1.publish(position)
-        pub2.publish(position)
-        pub3.publish(position)
-        pub4.publish(position)
-        print(position)
+        current_time = rospy.get_time()
+        elapsed_time = current_time - start_time
         
-        # Update position
-        position += direction * 0.01
-        if position >= 0.3:
-            position = 0.3
-            direction = -1
-        elif position <= 0.0:
-            position = 0.0
-            direction = 1
+        # Calculate positions using sine wave with phase shifts
+        position1 = math.sin(elapsed_time) - 0.6
+        position2 = math.sin(elapsed_time + math.pi / 2)  - 0.6
+        position3 = math.sin(elapsed_time + math.pi)  - 0.6
+        position4 = math.sin(elapsed_time + 3 * math.pi / 2)  - 0.6
+        
+        # Publish position to each actuator
+        pub1.publish(position1)
+        pub2.publish(position2)
+        pub3.publish(position3)
+        pub4.publish(position4)
         
         rate.sleep()
 
