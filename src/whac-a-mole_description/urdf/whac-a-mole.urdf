@@ -3,7 +3,7 @@
     <link name="world" />
 
     <joint name="world_joint"  type="fixed">
-        <origin xyz="2 0 1.5" rpy="0 0 0" />
+        <origin xyz="5.5 4 0" rpy="0 0 0" />
         <parent link="world"/>
         <child link="base"/>
     </joint>
@@ -34,115 +34,239 @@
     <link name="linear_actuator_1">
         <visual>
             <geometry>
-                <mesh filename="package://whac-a-mole_description/meshes/Linear Actuator.stl"/>
+                <box size="1 1 0.5"/>
             </geometry>
-            <material name="blue">
-                <color rgba="0.0 0.0 1.0 1"/>
+            <material name="gray">
+                <color rgba="0.5 0.5 0.5 1"/>
             </material>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://whac-a-mole_description/meshes/Linear Actuator.stl"/>
+                <box size="1 1 0.5"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1.0"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
+                     iyy="0.001" iyz="0.0" 
+                     izz="0.001"/>
+        </inertial>
+    </link>
+
+    <link name="slider_link_1">
+        <visual>
+            <geometry>
+                <cylinder radius="0.2" length="1.00"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 0.8 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.2" length="1.00"/>
             </geometry>
         </collision>
         <inertial>
             <mass value="0.5"/>
-            <inertia ixx="0.0005" ixy="0.0" ixz="0.0" 
-                     iyy="0.0005" iyz="0.0" 
-                     izz="0.0005"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
+                     iyy="0.001" iyz="0.0" 
+                     izz="0.0001"/>
         </inertial>
     </link>
 
     <joint name="base_to_linear_actuator_1" type="fixed">
         <parent link="base"/>
         <child link="linear_actuator_1"/>
-        <origin xyz="0.1 0 0" rpy="0 0 0"/>
+        <origin xyz="-1 -8 3" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="slider_joint_1" type="prismatic">
+        <parent link="linear_actuator_1"/>
+        <child link="slider_link_1"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
+        <dynamics damping="0.7" friction="0.0"/>
     </joint>
 
     <!-- Linear Actuator 2 -->
     <link name="linear_actuator_2">
         <visual>
             <geometry>
-                <mesh filename="package://whac-a-mole_description/meshes/Linear Actuator.stl"/>
+                <box size="1 1 0.5"/>
             </geometry>
-            <material name="blue">
-                <color rgba="0.0 0.0 1.0 1"/>
+            <material name="gray">
+                <color rgba="0.5 0.5 0.5 1"/>
             </material>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://whac-a-mole_description/meshes/Linear Actuator.stl"/>
+                <box size="1 1 0.5"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1.0"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
+                     iyy="0.001" iyz="0.0" 
+                     izz="0.001"/>
+        </inertial>
+    </link>
+
+    <link name="slider_link_2">
+        <visual>
+            <geometry>
+                <cylinder radius="0.2" length="1.00"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 0.8 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.2" length="1.00"/>
             </geometry>
         </collision>
         <inertial>
             <mass value="0.5"/>
-            <inertia ixx="0.0005" ixy="0.0" ixz="0.0" 
-                     iyy="0.0005" iyz="0.0" 
-                     izz="0.0005"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
+                     iyy="0.001" iyz="0.0" 
+                     izz="0.0001"/>
         </inertial>
     </link>
 
     <joint name="base_to_linear_actuator_2" type="fixed">
         <parent link="base"/>
         <child link="linear_actuator_2"/>
-        <origin xyz="15 0 0" rpy="0 0 0"/>
+        <origin xyz="-3 -8 3" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="slider_joint_2" type="prismatic">
+        <parent link="linear_actuator_2"/>
+        <child link="slider_link_2"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
+        <dynamics damping="0.7" friction="0.0"/>
     </joint>
 
     <!-- Linear Actuator 3 -->
     <link name="linear_actuator_3">
         <visual>
             <geometry>
-                <mesh filename="package://whac-a-mole_description/meshes/Linear Actuator.stl"/>
+                <box size="1 1 0.5"/>
             </geometry>
-            <material name="blue">
-                <color rgba="0.0 0.0 1.0 1"/>
+            <material name="gray">
+                <color rgba="0.5 0.5 0.5 1"/>
             </material>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://whac-a-mole_description/meshes/Linear Actuator.stl"/>
+                <box size="1 1 0.5"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1.0"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
+                     iyy="0.001" iyz="0.0" 
+                     izz="0.001"/>
+        </inertial>
+    </link>
+
+    <link name="slider_link_3">
+        <visual>
+            <geometry>
+                <cylinder radius="0.2" length="1.00"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 0.8 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.2" length="1.00"/>
             </geometry>
         </collision>
         <inertial>
             <mass value="0.5"/>
-            <inertia ixx="0.0005" ixy="0.0" ixz="0.0" 
-                     iyy="0.0005" iyz="0.0" 
-                     izz="0.0005"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
+                     iyy="0.001" iyz="0.0" 
+                     izz="0.0001"/>
         </inertial>
     </link>
 
     <joint name="base_to_linear_actuator_3" type="fixed">
         <parent link="base"/>
         <child link="linear_actuator_3"/>
-        <origin xyz="30 0 0" rpy="0 0 0"/>
+        <origin xyz="-7 -8 3" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="slider_joint_3" type="prismatic">
+        <parent link="linear_actuator_3"/>
+        <child link="slider_link_3"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
+        <dynamics damping="0.7" friction="0.0"/>
     </joint>
 
     <!-- Linear Actuator 4 -->
     <link name="linear_actuator_4">
         <visual>
             <geometry>
-                <mesh filename="package://whac-a-mole_description/meshes/Linear Actuator.stl"/>
+                <box size="1 1 0.5"/>
             </geometry>
-            <material name="blue">
-                <color rgba="0.0 0.0 1.0 1"/>
+            <material name="gray">
+                <color rgba="0.5 0.5 0.5 1"/>
             </material>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://whac-a-mole_description/meshes/Linear Actuator.stl"/>
+                <box size="1 1 0.5"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1.0"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
+                     iyy="0.001" iyz="0.0" 
+                     izz="0.001"/>
+        </inertial>
+    </link>
+
+    <link name="slider_link_4">
+        <visual>
+            <geometry>
+                <cylinder radius="0.2" length="1.00"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 0.8 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.2" length="1.00"/>
             </geometry>
         </collision>
         <inertial>
             <mass value="0.5"/>
-            <inertia ixx="0.0005" ixy="0.0" ixz="0.0" 
-                     iyy="0.0005" iyz="0.0" 
-                     izz="0.0005"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
+                     iyy="0.001" iyz="0.0" 
+                     izz="0.0001"/>
         </inertial>
     </link>
 
     <joint name="base_to_linear_actuator_4" type="fixed">
         <parent link="base"/>
         <child link="linear_actuator_4"/>
-        <origin xyz="45 0 0" rpy="0 0 0"/>
+        <origin xyz="-9 -8 3" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="slider_joint_4" type="prismatic">
+        <parent link="linear_actuator_4"/>
+        <child link="slider_link_4"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="100.0" lower="0.0" upper="0.3" velocity="1.0"/>
+        <dynamics damping="0.7" friction="0.0"/>
     </joint>
 </robot>
