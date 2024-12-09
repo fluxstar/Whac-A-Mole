@@ -24,5 +24,7 @@
   <!-- Start the controller spawner -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen"
         args="slider_joint_1_position_controller slider_joint_2_position_controller 
-              slider_joint_3_position_controller slider_joint_4_position_controller"/>
+              slider_joint_3_position_controller slider_joint_4_position_controller
+              button_joint_1_position_controller button_joint_2_position_controller
+              button_joint_3_position_controller button_joint_4_position_controller"/>
 </launch>

@@ -278,7 +278,7 @@
         <origin xyz="0 0 -1.75" rpy="0 0 0"/>
     </joint>
 
-        <!-- Transmission for slider_joint_1 -->
+    <!-- Transmission for slider_joint_1 -->
     <transmission name="slider_joint_1_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="slider_joint_1">
@@ -364,9 +364,9 @@
     <joint name="button_joint_1" type="prismatic">
         <parent link="button_base_1"/>
         <child link="button_top_1"/>
-        <origin xyz="0 0 1.65" rpy="0 0 0"/>
+        <origin xyz="0 0 0.65" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit lower="-1" upper="0" effort="10" velocity="0.1"/>
+        <limit lower="-0.5" upper="0" effort="10" velocity="0.1"/>
         <dynamics damping="0.1" friction="0.0"/>
     </joint>
     
@@ -383,6 +383,17 @@
         <spring_reference>0.0</spring_reference>
         <damping>0.5</damping>
     </gazebo>
+
+    <!-- Transmission for button_joint_1 -->
+    <transmission name="button_joint_1_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="button_joint_1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="button_joint_1_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 
     <!-- Button 2 -->
     <!-- Base Link -->
@@ -426,9 +437,9 @@
     <joint name="button_joint_2" type="prismatic">
         <parent link="button_base_2"/>
         <child link="button_top_2"/>
-        <origin xyz="0 0 1.65" rpy="0 0 0"/>
+        <origin xyz="0 0 0.65" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit lower="-1" upper="0" effort="10" velocity="0.1"/>
+        <limit lower="-0.5" upper="0" effort="10" velocity="0.1"/>
         <dynamics damping="0.1" friction="0.0"/>
     </joint>
     
@@ -445,6 +456,17 @@
         <spring_reference>0.0</spring_reference>
         <damping>0.5</damping>
     </gazebo>
+
+    <!-- Transmission for button_joint_2 -->
+    <transmission name="button_joint_2_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="button_joint_2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="button_joint_2_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 
     <!-- Button 3 -->
     <!-- Base Link -->
@@ -494,9 +516,9 @@
     <joint name="button_joint_3" type="prismatic">
         <parent link="button_base_3"/>
         <child link="button_top_3"/>
-        <origin xyz="0 0 1.65" rpy="0 0 0"/>
+        <origin xyz="0 0 0.65" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit lower="-1" upper="0" effort="10" velocity="0.1"/>
+        <limit lower="-0.5" upper="0" effort="10" velocity="0.1"/>
         <dynamics damping="0.1" friction="0.0"/>
     </joint>
     
@@ -513,6 +535,17 @@
         <spring_reference>0.0</spring_reference>
         <damping>0.5</damping>
     </gazebo>
+
+    <!-- Transmission for button_joint_3 -->
+    <transmission name="button_joint_3_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="button_joint_3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="button_joint_3_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 
     <!-- Button 4 -->
     <!-- Base Link -->
@@ -556,9 +589,9 @@
     <joint name="button_joint_4" type="prismatic">
         <parent link="button_base_4"/>
         <child link="button_top_4"/>
-        <origin xyz="0 0 1.65" rpy="0 0 0"/>
+        <origin xyz="0 0 0.65" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit lower="-1" upper="0" effort="10" velocity="0.1"/>
+        <limit lower="-0.5" upper="0" effort="10" velocity="0.1"/>
         <dynamics damping="0.1" friction="0.0"/>
     </joint>
     
@@ -575,4 +608,15 @@
         <spring_reference>0.0</spring_reference>
         <damping>0.5</damping>
     </gazebo>
+
+    <!-- Transmission for button_joint_4 -->
+    <transmission name="button_joint_4_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="button_joint_4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="button_joint_4_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 </robot>

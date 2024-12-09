@@ -8,7 +8,6 @@ slider_joint_2_position_controller:
   joint: slider_joint_2
   pid: {p: 100.0, i: 0.01, d: 10.0}
 
-
 slider_joint_3_position_controller:
   type: effort_controllers/JointPositionController
   joint: slider_joint_3
@@ -17,4 +16,24 @@ slider_joint_3_position_controller:
 slider_joint_4_position_controller:
   type: effort_controllers/JointPositionController
   joint: slider_joint_4
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+button_joint_1_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: button_joint_1
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+button_joint_2_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: button_joint_2
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+button_joint_3_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: button_joint_3
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+button_joint_4_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: button_joint_4
   pid: {p: 100.0, i: 0.01, d: 10.0}
