@@ -2,7 +2,6 @@
 
 import rospy
 import math
-import random
 from std_msgs.msg import Float64
 
 def move_actuators():
@@ -27,12 +26,13 @@ def move_actuators():
         current_time = rospy.get_time()
         elapsed_time = current_time - start_time
         
-        # Calculate positions using sine wave with phase shifts
+        # Calculate positions using sine wave with phase shifts (moves between -1.6 and 0.4)
         position1 = math.sin(elapsed_time) - 0.6
         position2 = math.sin(elapsed_time + math.pi / 2)  - 0.6
         position3 = math.sin(elapsed_time + math.pi)  - 0.6
         position4 = math.sin(elapsed_time + 3 * math.pi / 2)  - 0.6
 
+        # Calculate positions using sine wave with phase shifts (moves between -0.5 and 0)
         butt_pos_1 = -0.25 * math.sin(elapsed_time + math.pi / 2) - 0.25
         butt_pos_2 = -0.25 * math.sin(elapsed_time + math.pi) - 0.25
         butt_pos_3 = -0.25 * math.sin(elapsed_time + 3 * math.pi / 2) - 0.25
