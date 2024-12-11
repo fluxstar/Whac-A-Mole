@@ -7,6 +7,7 @@ import sys
 import select
 import tty
 import termios
+import queue
 from std_msgs.msg import Float64
 from control_msgs.msg import JointControllerState
 
@@ -30,6 +31,9 @@ score = 0
 
 # Lock for thread-safe operations
 score_lock = threading.Lock()
+
+# Queue to store messages to be displayed
+message_queue = queue.Queue()
 
 # Flags to track if a button has already been hit
 button_hit_flags = {
@@ -69,6 +73,11 @@ def user_input_thread():
     global score, nightmare_mode
     while not rospy.is_shutdown():
         try:
+            # Process messages from queue (threading caused cascading prints)
+            while not message_queue.empty():
+                message = message_queue.get()
+                print(message)
+
             user_input = getKey()
             if not user_input:
                 continue
@@ -76,7 +85,7 @@ def user_input_thread():
                 break
             if user_input == "`":
                 nightmare_mode = True
-                print("Nightmare mode activated! Good luck, nerd.")
+                message_queue.put("Nightmare mode activated! Good luck, nerd.")
                 continue
             button_num = int(user_input)
             if 1 <= button_num <= 4:
@@ -86,16 +95,20 @@ def user_input_thread():
                         target_positions[button_joint] = -0.5
                         score += 1
                         button_hit_flags[f"button_{button_num}"] = True
-                        print(f"Button {button_num} pushed down by user. "
-                              f"Score: {score}")
+                        message_queue.put(f"Button {button_num} "
+                                          f"pushed down by user. "
+                                          f"Score: {score}")
                     else:
                         score -= 1
-                        print(f"Button {button_num} is already down. "
-                              f"Score: {score}")
+                        message_queue.put(f"Button {button_num} "
+                                          f"is already down. "
+                                          f"Score: {score}")
             else:
-                print("Please enter a valid number between 1 and 4.")
+                message_queue.put("Please enter a valid number \
+                                   between 1 and 4.")
         except ValueError:
-            print("Invalid input. Please enter a number between 1 and 4.")
+            message_queue.put("Invalid input. Please enter a number \
+                               between 1 and 4.")
 
 
 def whac_a_mole():
@@ -190,7 +203,8 @@ def whac_a_mole():
                 with score_lock:
                     if not button_hit_flags[button_flag]:
                         score -= 1
-                        print(f"Robot hit Button {i}. Score: {score}")
+                        message_queue.put(f"Robot hit Button {i}. "
+                                          f"Score: {score}")
                         # Prevent multiple decrements
                         button_hit_flags[button_flag] = True
 

@@ -21,15 +21,7 @@
             <geometry>
                 <mesh filename="package://whac-a-mole_description/meshes/Base.stl"/>
             </geometry>
-            <material name="gray">
-                <color rgba="0.5 0.5 0.5 1"/>
-            </material>
         </visual>
-        <!-- <collision>
-            <geometry>
-                <mesh filename="package://whac-a-mole_description/meshes/Base.stl"/>
-            </geometry>
-        </collision> -->
         <inertial>
             <mass value="1.0"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -38,15 +30,16 @@
         </inertial>
     </link>
 
+    <!--|-|-|-|-|-|-|-|-|-|-|-|-->
+    <!--|-|LINEAR  ACTUATORS|-|-->
+    <!--|-|-|-|-|-|-|-|-|-|-|-|-->
+
     <!-- Linear Actuator 1 -->
     <link name="linear_actuator_1">
         <visual>
             <geometry>
                 <box size="1 1 0.5"/>
             </geometry>
-            <material name="gray">
-                <color rgba="0.5 0.5 0.5 1"/>
-            </material>
         </visual>
         <collision>
             <geometry>
@@ -66,15 +59,7 @@
             <geometry>
                 <cylinder radius="0.2" length="3.00"/>
             </geometry>
-            <material name="blue">
-                <color rgba="0.0 0.0 0.8 1"/>
-            </material>
         </visual>
-        <!-- <collision>
-            <geometry>
-                <cylinder radius="0.2" length="3.00"/>
-            </geometry>
-        </collision> -->
         <inertial>
             <mass value="0.5"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -104,9 +89,6 @@
             <geometry>
                 <box size="1 1 0.5"/>
             </geometry>
-            <material name="gray">
-                <color rgba="0.5 0.5 0.5 1"/>
-            </material>
         </visual>
         <collision>
             <geometry>
@@ -126,15 +108,7 @@
             <geometry>
                 <cylinder radius="0.2" length="3.00"/>
             </geometry>
-            <material name="blue">
-                <color rgba="0.0 0.0 0.8 1"/>
-            </material>
         </visual>
-        <!-- <collision>
-            <geometry>
-                <cylinder radius="0.2" length="3.00"/>
-            </geometry>
-        </collision> -->
         <inertial>
             <mass value="0.5"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -164,9 +138,6 @@
             <geometry>
                 <box size="1 1 0.5"/>
             </geometry>
-            <material name="gray">
-                <color rgba="0.5 0.5 0.5 1"/>
-            </material>
         </visual>
         <collision>
             <geometry>
@@ -186,15 +157,7 @@
             <geometry>
                 <cylinder radius="0.2" length="3.00"/>
             </geometry>
-            <material name="blue">
-                <color rgba="0.0 0.0 0.8 1"/>
-            </material>
         </visual>
-        <!-- <collision>
-            <geometry>
-                <cylinder radius="0.2" length="3.00"/>
-            </geometry>
-        </collision> -->
         <inertial>
             <mass value="0.5"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -224,9 +187,6 @@
             <geometry>
                 <box size="1 1 0.5"/>
             </geometry>
-            <material name="gray">
-                <color rgba="0.5 0.5 0.5 1"/>
-            </material>
         </visual>
         <collision>
             <geometry>
@@ -246,15 +206,7 @@
             <geometry>
                 <cylinder radius="0.2" length="3.00"/>
             </geometry>
-            <material name="blue">
-                <color rgba="0.0 0.0 0.8 1"/>
-            </material>
         </visual>
-        <!-- <collision>
-            <geometry>
-                <cylinder radius="0.2" length="3.00"/>
-            </geometry>
-        </collision> -->
         <inertial>
             <mass value="0.5"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" 
@@ -322,14 +274,18 @@
         </actuator>
     </transmission>
 
+    <!--|-|-|-|-|-|-|-|-|-|-|-|-->
+    <!--|-|-|-| BUTTONS |-|-|-|-->
+    <!--|-|-|-|-|-|-|-|-|-|-|-|-->
+
     <!-- Button 1 -->
+
     <!-- Base Link -->
     <link name="button_base_1">
         <visual>
             <geometry>
                 <box size="1 1 1"/>
             </geometry>
-            <material name="gray"/>
         </visual>
         <inertial>
             <mass value="0.1"/>
@@ -345,7 +301,6 @@
             <geometry>
                 <cylinder radius="0.45" length="0.3"/>
             </geometry>
-            <material name="blue"/>
         </visual>
         <collision>
             <geometry>
@@ -396,13 +351,13 @@
     </transmission>
 
     <!-- Button 2 -->
+
     <!-- Base Link -->
     <link name="button_base_2">
         <visual>
             <geometry>
                 <box size="1 1 1"/>
             </geometry>
-            <material name="gray"/>
         </visual>
         <inertial>
             <mass value="0.1"/>
@@ -418,7 +373,6 @@
             <geometry>
                 <cylinder radius="0.45" length="0.3"/>
             </geometry>
-            <material name="blue"/>
         </visual>
         <collision>
             <geometry>
@@ -469,13 +423,13 @@
     </transmission>
 
     <!-- Button 3 -->
+
     <!-- Base Link -->
     <link name="button_base_3">
         <visual>
             <geometry>
                 <box size="1 1 1"/>
             </geometry>
-            <material name="gray"/>
         </visual>
         <inertial>
             <mass value="0.1"/>
@@ -491,13 +445,6 @@
             <geometry>
                 <cylinder radius="0.45" length="0.3"/>
             </geometry>
-            <material name="blue">
-                <color rgba="0.0 0.0 0.8 1"/>
-                <ambient>0 0 0 1</ambient>
-                <diffuse>0 0 0 1</diffuse>
-                <specular>0 0 0 0</specular>
-                <emissive>0 0 1 1</emissive>
-            </material>
         </visual>
         <collision>
             <geometry>
@@ -548,13 +495,13 @@
     </transmission>
 
     <!-- Button 4 -->
+
     <!-- Base Link -->
     <link name="button_base_4">
         <visual>
             <geometry>
                 <box size="1 1 1"/>
             </geometry>
-            <material name="gray"/>
         </visual>
         <inertial>
             <mass value="0.1"/>
@@ -570,7 +517,6 @@
             <geometry>
                 <cylinder radius="0.45" length="0.3"/>
             </geometry>
-            <material name="blue"/>
         </visual>
         <collision>
             <geometry>
