@@ -86,7 +86,7 @@
     <joint name="slider_joint_1" type="prismatic">
         <parent link="world"/>
         <child link="slider_link_1"/>
-        <origin xyz="4 -4 4.75" rpy="0 0 0"/>
+        <origin xyz="-3 -4 4.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100.0" lower="-2.25" upper="0.4" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
@@ -146,7 +146,7 @@
     <joint name="slider_joint_2" type="prismatic">
         <parent link="world"/>
         <child link="slider_link_2"/>
-        <origin xyz="2 -4 4.75" rpy="0 0 0"/>
+        <origin xyz="-1 -4 4.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100.0" lower="-2.25" upper="0.4" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
@@ -206,7 +206,7 @@
     <joint name="slider_joint_3" type="prismatic">
         <parent link="world"/>
         <child link="slider_link_3"/>
-        <origin xyz="-1 -4 4.75" rpy="0 0 0"/>
+        <origin xyz="2 -4 4.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100.0" lower="-2.25" upper="0.4" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
@@ -266,7 +266,7 @@
     <joint name="slider_joint_4" type="prismatic">
         <parent link="world"/>
         <child link="slider_link_4"/>
-        <origin xyz="-3 -4 4.75" rpy="0 0 0"/>
+        <origin xyz="4 -4 4.75" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
         <limit effort="100.0" lower="-2.25" upper="0.4" velocity="1.0"/>
         <dynamics damping="0.7" friction="0.0"/>
@@ -374,7 +374,7 @@
     <joint name="button_1_base_to_world" type="fixed">
         <parent link="world"/>
         <child link="button_base_1"/>
-        <origin xyz="4 -4 0.5" rpy="0 0 0"/>
+        <origin xyz="-3 -4 0.5" rpy="0 0 0"/>
     </joint>
     
     <!-- Gazebo Extension for Spring Effect -->
@@ -447,7 +447,7 @@
     <joint name="button_2_base_to_world" type="fixed">
         <parent link="world"/>
         <child link="button_base_2"/>
-        <origin xyz="2 -4 0.5" rpy="0 0 0"/>
+        <origin xyz="-1 -4 0.5" rpy="0 0 0"/>
     </joint>
     
     <!-- Gazebo Extension for Spring Effect -->
@@ -526,7 +526,7 @@
     <joint name="button_3_base_to_world" type="fixed">
         <parent link="world"/>
         <child link="button_base_3"/>
-        <origin xyz="-1 -4 0.5" rpy="0 0 0"/>
+        <origin xyz="2 -4 0.5" rpy="0 0 0"/>
     </joint>
     
     <!-- Gazebo Extension for Spring Effect -->
@@ -599,7 +599,7 @@
     <joint name="button_4_base_to_world" type="fixed">
         <parent link="world"/>
         <child link="button_base_4"/>
-        <origin xyz="-3 -4 0.5" rpy="0 0 0"/>
+        <origin xyz="4 -4 0.5" rpy="0 0 0"/>
     </joint>
     
     <!-- Gazebo Extension for Spring Effect -->

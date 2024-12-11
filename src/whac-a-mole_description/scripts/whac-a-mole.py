@@ -3,6 +3,10 @@
 import rospy
 import random
 import threading
+import sys
+import select
+import tty
+import termios
 from std_msgs.msg import Float64
 from control_msgs.msg import JointControllerState
 
@@ -38,67 +42,90 @@ button_hit_flags = {
 # Flag for nightmare mode
 nightmare_mode = False
 
+
 def slider_joint_callback(msg, joint_name):
     current_positions[joint_name] = msg.process_value
 
+
 def button_joint_callback(msg, joint_name):
     current_positions[joint_name] = msg.process_value
+
+
+def getKey():
+    original_settings = termios.tcgetattr(sys.stdin)
+    try:
+        tty.setraw(sys.stdin.fileno())
+        rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
+        if rlist:
+            key = sys.stdin.read(1)
+        else:
+            key = ""
+    finally:
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, original_settings)
+    return key
+
 
 def user_input_thread():
     global score, nightmare_mode
     while not rospy.is_shutdown():
         try:
-            user_input = input("Enter a number between 1 and 4 to push down the button: ")
-            if user_input == "1027":
-                nightmare_mode = True
-                print("Nightmare mode activated! Threshold set to -0.45.")
+            user_input = getKey()
+            if not user_input:
                 continue
-
+            if user_input == "\x03":  # Ctrl+C
+                break
+            if user_input == "`":
+                nightmare_mode = True
+                print("Nightmare mode activated! Good luck, nerd.")
+                continue
             button_num = int(user_input)
             if 1 <= button_num <= 4:
                 button_joint = f"button_joint_{button_num}"
                 with score_lock:
                     if current_positions[button_joint] >= -0.4:
-                        # The button is up; user pushes it down
-                        target_positions[button_joint] = -0.5  # Push down the button
+                        target_positions[button_joint] = -0.5
                         score += 1
-                        button_hit_flags[f"button_{button_num}"] = True  # Prevent multiple increments
-                        print(f"Button {button_num} pushed down by user. Score: {score}")
+                        button_hit_flags[f"button_{button_num}"] = True
+                        print(f"Button {button_num} pushed down by user. "
+                              f"Score: {score}")
                     else:
-                        # Button is already down
                         score -= 1
-                        print(f"Button {button_num} is already down. Score: {score}")
+                        print(f"Button {button_num} is already down. "
+                              f"Score: {score}")
             else:
                 print("Please enter a valid number between 1 and 4.")
         except ValueError:
             print("Invalid input. Please enter a number between 1 and 4.")
 
+
 def whac_a_mole():
     global score
     rospy.init_node("move_linear_actuators", anonymous=True)
-    
+
     # Publishers for sliders and buttons
     slider_pubs = [
-        rospy.Publisher(f"/slider_joint_{i}_position_controller/command", Float64, queue_size=10)
+        rospy.Publisher(f"/slider_joint_{i}_position_controller/command",
+                        Float64, queue_size=10)
         for i in range(1, 5)
     ]
     button_pubs = [
-        rospy.Publisher(f"/button_joint_{i}_position_controller/command", Float64, queue_size=10)
+        rospy.Publisher(f"/button_joint_{i}_position_controller/command",
+                        Float64, queue_size=10)
         for i in range(1, 5)
     ]
-    
+
     # Subscribers for joint states
     for i in range(1, 5):
         rospy.Subscriber(
-            f"/slider_joint_{i}_position_controller/state", 
-            JointControllerState, 
-            slider_joint_callback, 
+            f"/slider_joint_{i}_position_controller/state",
+            JointControllerState,
+            slider_joint_callback,
             callback_args=f"slider_joint_{i}"
         )
         rospy.Subscriber(
-            f"/button_joint_{i}_position_controller/state", 
-            JointControllerState, 
-            button_joint_callback, 
+            f"/button_joint_{i}_position_controller/state",
+            JointControllerState,
+            button_joint_callback,
             callback_args=f"button_joint_{i}"
         )
 
@@ -107,7 +134,7 @@ def whac_a_mole():
 
     rate = rospy.Rate(10)  # 10 Hz
     last_pop_time = rospy.get_time()
-    next_pop_interval = random.uniform(1, 3)
+    next_pop_interval = 5  # Initial interval for popping up buttons
 
     while not rospy.is_shutdown():
         current_time = rospy.get_time()
@@ -128,12 +155,15 @@ def whac_a_mole():
         if elapsed_time >= next_pop_interval:
             button_to_pop = random.randint(1, 4)
             button_joint = f"button_joint_{button_to_pop}"
-            if current_positions[button_joint] <= -0.1:
-                target_positions[button_joint] = 0.0  # Pop up the button
-                button_hit_flags[f"button_{button_to_pop}"] = False  # Reset the robot hit flag
+            if current_positions[button_joint] <= -0.1 and \
+               not button_hit_flags[f"button_{button_to_pop}"]:
+                # Pop up the button
+                target_positions[button_joint] = 0.0
+                # Reset the robot hit flag
+                button_hit_flags[f"button_{button_to_pop}"] = False
             last_pop_time = current_time
-            next_pop_interval = random.uniform(1, 5)
-        
+            next_pop_interval = random.uniform(1, 3)
+
         # Check each button and control the corresponding slider
         for i in range(1, 5):
             button_joint = f"button_joint_{i}"
@@ -147,10 +177,11 @@ def whac_a_mole():
             else:
                 # Keep the slider up
                 target_positions[slider_joint] = 0.4
-            
+
             # If the slider is up (resting position)
             if current_positions[slider_joint] >= 0.1:
-                button_hit_flags[button_flag] = False  # Reset flag when slider is up
+                # Reset flag when slider is up
+                button_hit_flags[button_flag] = False
 
             # If the slider is down (has hit the button)
             if current_positions[slider_joint] <= -1.5:
@@ -160,19 +191,21 @@ def whac_a_mole():
                     if not button_hit_flags[button_flag]:
                         score -= 1
                         print(f"Robot hit Button {i}. Score: {score}")
-                        button_hit_flags[button_flag] = True  # Prevent multiple decrements
+                        # Prevent multiple decrements
+                        button_hit_flags[button_flag] = True
 
         # Publish button positions
         for i, pub in enumerate(button_pubs, start=1):
             pub.publish(target_positions[f"button_joint_{i}"])
-        
+
         # Publish slider positions
         for i, pub in enumerate(slider_pubs, start=1):
             pub.publish(target_positions[f"slider_joint_{i}"])
-        
+
         rate.sleep()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     try:
         whac_a_mole()
     except rospy.ROSInterruptException:
