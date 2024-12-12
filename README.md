@@ -12,5 +12,5 @@ While that is running, open a new terminal in the same directory and run the fol
 Use the `1-4` keys to push down the corresponding button (left to right)
 Press the `` ` `` key for a secret!
 
-All unique code can be found in the `/whac-a-mole/whac-a-mole_description` directory.
-See `scripts` for Python code, `urdf` for model/joint setup
+All unique code can be found in the `/whac-a-mole/src/whac-a-mole_description` directory.
+See `scripts` for Python code, and `urdf` for model/joint setup
